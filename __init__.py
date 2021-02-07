@@ -50,11 +50,6 @@ class ReSpeaker_4mic_hat(MycroftSkill):
 		self.add_event('mycroft.skill.handler.complete',
 				self.handle_listener_off)
 
-		self.add_event('recognizer_loop:audio_output_start',
-				self.handler_listener_speak)
-		self.add_event('recognizer_loop:audio_output_end',
-				self.handle_listener_off)
-
 		pixel_ring.off()
 
 	def disable(self):
@@ -82,10 +77,6 @@ class ReSpeaker_4mic_hat(MycroftSkill):
 	def handle_listener_think(self, message):
 		self.log.info("Pixel Ring: Think")
 		pixel_ring.think()
-
-	def handler_listener_speak(self, message):
-		self.log.info("Pixel Ring: Speak")
-		pixel_ring.speak()
 
 	@intent_handler(IntentBuilder("").require("EnablePixelRing"))
 	def handle_enable_pixel_ring_intent(self, message):
